@@ -18,3 +18,12 @@ C:\Repos\twitterscratcher\TwitterAPITester\obj\Debug\TwitterAPITester.csproj.Cor
 C:\Repos\twitterscratcher\TwitterAPITester\obj\Debug\TwitterAPITester.csproj.CopyComplete
 C:\Repos\twitterscratcher\TwitterAPITester\obj\Debug\TwitterAPITester.exe
 C:\Repos\twitterscratcher\TwitterAPITester\obj\Debug\TwitterAPITester.pdb
+C:\TDAware\Examples_Tests\twitterscratcher\TwitterAPITester\bin\Debug\TwitterAPITester.exe.config
+C:\TDAware\Examples_Tests\twitterscratcher\TwitterAPITester\obj\Debug\TwitterAPITester.exe
+C:\TDAware\Examples_Tests\twitterscratcher\TwitterAPITester\obj\Debug\TwitterAPITester.pdb
+C:\TDAware\Examples_Tests\twitterscratcher\TwitterAPITester\bin\Debug\TwitterAPITester.exe
+C:\TDAware\Examples_Tests\twitterscratcher\TwitterAPITester\bin\Debug\TwitterAPITester.pdb
+C:\TDAware\Examples_Tests\twitterscratcher\TwitterAPITester\bin\Debug\Newtonsoft.Json.dll
+C:\TDAware\Examples_Tests\twitterscratcher\TwitterAPITester\bin\Debug\Newtonsoft.Json.xml
+C:\TDAware\Examples_Tests\twitterscratcher\TwitterAPITester\obj\Debug\TwitterAPITester.csprojResolveAssemblyReference.cache
+C:\TDAware\Examples_Tests\twitterscratcher\TwitterAPITester\obj\Debug\TwitterAPITester.csproj.CoreCompileInputs.cache

@@ -18,21 +18,38 @@ namespace TwitterAPITester
                 OAuthConsumerSecret = ""
             };
 
-            //get tweets by geolocation
-            IEnumerable<string> twitts = twitter.GetTweetsGeo("41.266867", "-95.931400", 10).Result;
-            foreach (var t in twitts)
-            {
-                Console.WriteLine(t + "\n");
-            }
-            Console.ReadKey();
+            //set type or username
+            string type = "geo";
+            string username = "";
+            //used for week of CWS omaha ne
+            string lat = "41.266867";
+            string lng = "-95.931400";
+            int radiusMiles = 1;
+            //number of tweets returned
+            int tweetCount = 50;
 
-            //get tweets by user
-            //IEnumerable<string> twitts = twitter.GetTweets("", 10).Result;
-            //foreach (var t in twitts)
-            //{
-            //    Console.WriteLine(t + "\n");
-            //}
-            //Console.ReadKey();
+            List<models.SearchResponseModel.Status> tweetList = new List<models.SearchResponseModel.Status>();
+
+            switch (type){
+                case "user":
+                    tweetList = twitter.getTweetsByUser(username, tweetCount);
+                    foreach (models.SearchResponseModel.Status tweet in tweetList)
+                    {
+                        Console.WriteLine("-------- @" + tweet.user.screen_name + " " + tweet.user.location + "-----" + tweet.created_at);
+                        Console.WriteLine(tweet.text + "\n");
+                    }
+                    Console.ReadLine();
+                    break;
+                case "geo":
+                    tweetList = twitter.getTweetsByGeo(lat, lng, radiusMiles, tweetCount);
+                    foreach (models.SearchResponseModel.Status tweet in tweetList)
+                    {
+                        Console.WriteLine("-------- @" + tweet.user.screen_name + " " + tweet.user.location + "-----" + tweet.created_at);
+                        Console.WriteLine(tweet.text + "\n");
+                    }
+                    Console.ReadLine();
+                    break;
+            }
         }
     }
 }
