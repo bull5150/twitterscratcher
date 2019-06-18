@@ -14,13 +14,15 @@ namespace TwitterAPITester
         {
             var twitter = new services.Twitter
             {
-                OAuthConsumerKey = "",
-                OAuthConsumerSecret = ""
+                OAuthConsumerKey = "[Your Stuff Here]",
+                OAuthConsumerSecret = "[Your Stuff Here]"
             };
 
             //set type or username
-            string type = "geo";
-            string username = "";
+            string type = "term";
+            string term = "Cornhuskers";
+            string lookBack = "2019-06-10";
+            string username = "realDonaldTrump";
             //used for week of CWS omaha ne
             string lat = "41.266867";
             string lng = "-95.931400";
@@ -32,7 +34,7 @@ namespace TwitterAPITester
 
             switch (type){
                 case "user":
-                    tweetList = twitter.getTweetsByUser(username, tweetCount);
+                    tweetList = twitter.getTweetsByUser(username, lookBack, tweetCount);
                     foreach (models.SearchResponseModel.Status tweet in tweetList)
                     {
                         Console.WriteLine("-------- @" + tweet.user.screen_name + " " + tweet.user.location + "-----" + tweet.created_at);
@@ -42,6 +44,15 @@ namespace TwitterAPITester
                     break;
                 case "geo":
                     tweetList = twitter.getTweetsByGeo(lat, lng, radiusMiles, tweetCount);
+                    foreach (models.SearchResponseModel.Status tweet in tweetList)
+                    {
+                        Console.WriteLine("-------- @" + tweet.user.screen_name + " " + tweet.user.location + "-----" + tweet.created_at);
+                        Console.WriteLine(tweet.text + "\n");
+                    }
+                    Console.ReadLine();
+                    break;
+                case "term":
+                    tweetList = twitter.getTweetsByTerm(term, tweetCount);
                     foreach (models.SearchResponseModel.Status tweet in tweetList)
                     {
                         Console.WriteLine("-------- @" + tweet.user.screen_name + " " + tweet.user.location + "-----" + tweet.created_at);

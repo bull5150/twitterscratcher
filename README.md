@@ -6,3 +6,5 @@ Trying out twitter api in a console.
 
 - Also added an example of the search by Geo Location.
 
+- Added a term search
+

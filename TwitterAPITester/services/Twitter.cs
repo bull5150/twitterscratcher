@@ -53,20 +53,36 @@ https://api.twitter.com/1.1/search/tweets.json?count={3}&geocode={0},{1},{2}mi&e
             return JsonConvert.DeserializeObject<models.SearchResponseModel.Rootobject>(json).statuses.ToList<models.SearchResponseModel.Status>();
         }
         //Tweets by User
-        public List<models.SearchResponseModel.Status> getTweetsByUser(string userName, int count, string accessToken = null)
+        public List<models.SearchResponseModel.Status> getTweetsByUser(string userName, string lookBack, int count, string accessToken = null)
         {
             if (accessToken == null)
             {
                 accessToken = GetAccessToken().GetAwaiter().GetResult();
             }
             var requestUserTimeline = new HttpRequestMessage(HttpMethod.Get, string.Format(@"
-https://api.twitter.com/1.1/statuses/user_timeline.json?count={0}&screen_name={1}&exclude_replies=1"
-, count, userName));
+https://api.twitter.com/1.1/statuses/user_timeline.json?count={0}&screen_name={1}&until={2}&exclude_replies=1"
+, count, userName, lookBack));
             requestUserTimeline.Headers.Add("Authorization", "Bearer " + accessToken);
             var httpClient = new HttpClient();
             HttpResponseMessage responseUserTimeLine = httpClient.SendAsync(requestUserTimeline).GetAwaiter().GetResult();
             string json = responseUserTimeLine.Content.ReadAsStringAsync().GetAwaiter().GetResult();
             return JsonConvert.DeserializeObject<List<models.SearchResponseModel.Status>>(json);
+        }
+        //Tweets by Term
+        public List<models.SearchResponseModel.Status> getTweetsByTerm(string term, int count, string accessToken = null)
+        {
+            if (accessToken == null)
+            {
+                accessToken = GetAccessToken().GetAwaiter().GetResult();
+            }
+            var requestUserTimeline = new HttpRequestMessage(HttpMethod.Get, string.Format(@"
+            https://api.twitter.com/1.1/search/tweets.json?count={0}&q={1}&exclude_replies=1"
+, count, term));
+            requestUserTimeline.Headers.Add("Authorization", "Bearer " + accessToken);
+            var httpClient = new HttpClient();
+            HttpResponseMessage responseUserTimeLine = httpClient.SendAsync(requestUserTimeline).GetAwaiter().GetResult();
+            string json = responseUserTimeLine.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            return JsonConvert.DeserializeObject<models.SearchResponseModel.Rootobject>(json).statuses.ToList<models.SearchResponseModel.Status>();
         }
     }
 }
